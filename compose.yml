@@ -1,0 +1,120 @@
+services:
+  matsin:
+    build:
+      context: .
+      dockerfile: ./docker/mediawiki/Dockerfile
+      target: mediawiki_run_stage
+      args:
+        - MEDIA_WIKI_VERSION=1.41
+        - INSTANCE_BUILD=matsin
+    container_name: dansin_matsin
+    ports:
+      - "8080:80"
+    environment:
+      - MEDIAWIKI_DB_TYPE=${MATSIN_DB_TYPE}
+      - MEDIAWIKI_DB_HOST=${MATSIN_DB_HOST}
+      - MEDIAWIKI_DB_PORT=${MATSIN_DB_PORT}
+      - MEDIAWIKI_DB_NAME=${MATSIN_DB_NAME}
+      - MEDIAWIKI_DB_USER=${MATSIN_DB_USER}
+      - MEDIAWIKI_DB_PASSWORD=${MATSIN_DB_PASSWORD}
+    volumes:
+      - ./backups/matsin:/backups
+      - ./public/matsin:/var/www/html/public
+      - ./settings/matsin/LocalSettings.php:/var/www/html/LocalSettings.php
+    depends_on:
+      - db
+    networks:
+      - brdgnet
+
+  vazhsin:
+    build:
+      context: .
+      dockerfile: ./docker/mediawiki/Dockerfile
+      target: mediawiki_run_stage
+      args:
+        - MEDIA_WIKI_VERSION=1.41
+        - INSTANCE_BUILD=vazhsin
+    container_name: dansin_vazhsin
+    ports:
+      - "8081:80"
+    environment:
+      - MEDIAWIKI_DB_TYPE=${VAZHSIN_DB_TYPE}
+      - MEDIAWIKI_DB_HOST=${VAZHSIN_DB_HOST}
+      - MEDIAWIKI_DB_PORT=${VAZHSIN_DB_PORT}
+      - MEDIAWIKI_DB_NAME=${VAZHSIN_DB_NAME}
+      - MEDIAWIKI_DB_USER=${VAZHSIN_DB_USER}
+      - MEDIAWIKI_DB_PASSWORD=${VAZHSIN_DB_PASSWORD}
+    volumes:
+      - ./backups/vazhsin:/backups
+      - ./public/vazhsin:/var/www/html/public
+      - ./settings/vazhsin/LocalSettings.php:/var/www/html/LocalSettings.php
+    depends_on:
+      - db
+    networks:
+      - brdgnet
+
+  resasin:
+    build:
+      context: .
+      dockerfile: ./docker/mediawiki/Dockerfile
+      target: mediawiki_run_stage
+      args:
+        - MEDIA_WIKI_VERSION=1.41
+        - INSTANCE_BUILD=resasin
+    container_name: dansin_resasin
+    ports:
+      - "8082:80"
+    environment:
+      - MEDIAWIKI_DB_TYPE=${RESASIN_DB_TYPE}
+      - MEDIAWIKI_DB_HOST=${RESASIN_DB_HOST}
+      - MEDIAWIKI_DB_PORT=${RESASIN_DB_PORT}
+      - MEDIAWIKI_DB_NAME=${RESASIN_DB_NAME}
+      - MEDIAWIKI_DB_USER=${RESASIN_DB_USER}
+      - MEDIAWIKI_DB_PASSWORD=${RESASIN_DB_PASSWORD}
+    volumes:
+      - ./backups/resasin:/backups
+      - ./public/resasin:/var/www/html/public
+      - ./settings/resasin/LocalSettings.php:/var/www/html/LocalSettings.php
+      - resasin_imgs:/var/www/html/images
+    depends_on:
+      - db
+    networks:
+      - brdgnet
+
+  db:
+    build:
+      context: ./docker/mariadb
+      dockerfile: Dockerfile
+      target: mariadb_run_stage
+      args:
+        - MARIADB_VERSION=11.2
+    container_name: dansin_db
+    env_file:
+      - .env
+    volumes:
+      - ./backups:/backups
+      - dansin_data:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - brdgnet
+
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    container_name: dansin_admin
+    ports:
+      - 8083:80
+    env_file:
+      - .env
+
+    networks:
+      - brdgnet
+
+networks:
+  brdgnet:
+    driver: bridge
+
+volumes:
+  # Define an external volume named resasin_imgs
+  resasin_imgs: {}
+  # Define an external volume named dansin_data
+  dansin_data: {}
