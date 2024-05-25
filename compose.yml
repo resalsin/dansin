@@ -21,6 +21,7 @@ services:
       - ./backups/matsin:/backups
       - ./public/matsin:/var/www/html/public
       - ./settings/matsin/LocalSettings.php:/var/www/html/LocalSettings.php
+      - matsin_medias:/medias
     depends_on:
       - db
     networks:
@@ -48,6 +49,7 @@ services:
       - ./backups/vazhsin:/backups
       - ./public/vazhsin:/var/www/html/public
       - ./settings/vazhsin/LocalSettings.php:/var/www/html/LocalSettings.php
+      - vazhsin_medias:/medias
     depends_on:
       - db
     networks:
@@ -75,7 +77,7 @@ services:
       - ./backups/resasin:/backups
       - ./public/resasin:/var/www/html/public
       - ./settings/resasin/LocalSettings.php:/var/www/html/LocalSettings.php
-      - resasin_imgs:/var/www/html/images
+      - resasin_medias:/medias
     depends_on:
       - db
     networks:
@@ -93,7 +95,7 @@ services:
       - .env
     volumes:
       - ./backups:/backups
-      - dansin_data:/var/lib/mysql
+      - matsin_data:/var/lib/mysql
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     networks:
       - brdgnet
@@ -114,7 +116,11 @@ networks:
     driver: bridge
 
 volumes:
-  # Define an external volume named resasin_imgs
-  resasin_imgs: {}
-  # Define an external volume named dansin_data
-  dansin_data: {}
+  # Define an external volume named matsin_medias
+  matsin_medias: {}
+  # Define an external volume named vazhsin_medias
+  vazhsin_medias: {}
+  # Define an external volume named resasin_medias
+  resasin_medias: {}
+  # Define an external volume named matsin_data
+  matsin_data: {}
