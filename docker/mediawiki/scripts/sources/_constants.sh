@@ -5,7 +5,7 @@ BACKUP_DIR='/backups'
 EXTENSION_DIR="/var/www/html/extensions"
 
 # Set the backup source
-BACKUP_SOURCE="/var/www/html/images"  # Set the source directory for the backup
+BACKUP_SOURCE="/medias"               # Set the source directory for the backup
 BACKUP_DESTINATION="${BACKUP_SOURCE}" # Set the destination directory for the backup (same as source in this case)
 
 # Set the backup file prefix
