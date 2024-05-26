@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# Function: update_db
+# Description: Update the database
+# Arguments:
+#   None
+update_db() {
+    local service_name="${1}"
+    local was_running=1
+
+    if ! docker_service_is_running "${service_name}"; then
+        docker compose -f "${docker_compose}" up "${service_name}" -d
+        was_running=0
+    fi
+
+    # Execute backup command for the database management system
+    docker compose -f "${docker_compose}" exec "${service_name}" bash -c "php maintenance/run.php update"
+
+    if [ ${was_running} = 0 ]; then
+        docker compose -f "${docker_compose}" down "${service_name}"
+    fi
+}
+
+# Check if there are no command line arguments
+if [[ $# -eq 0 ]]; then
+    # Backup data and medias for default service
+    update_db "${DEFAULT_SERVICE}"
+    exit 0
+fi
+
+update_db "$@"

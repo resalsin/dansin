@@ -41,6 +41,7 @@ WORKDIR /var/www/html
 
 # Clone UniversalLanguageSelector extension
 RUN git clone --depth=1 --branch 2024.01 https://gerrit.wikimedia.org/r/mediawiki/extensions/UniversalLanguageSelector ./extensions/UniversalLanguageSelector
+RUN git clone --depth=1 --branch REL1_41 https://gerrit.wikimedia.org/r/mediawiki/extensions/TimedMediaHandler /var/www/html/extensions/TimedMediaHandler
 
 # Set the INSTANCE_BUILD argument
 ARG INSTANCE_BUILD=matsin
@@ -66,6 +67,13 @@ RUN composer update --no-dev
 ##########################################################
 # Create a new image stage named 'matsin' based on the mediawiki image
 FROM mediawiki AS mediawiki_run_stage
+
+# Update the package index to ensure you install the latest versions of packages
+RUN apt-get update && \
+    # Install the required packages: ffmpeg, imagemagick, ghostscript, texlive, texlive-latex-extra, texlive-fonts-recommended
+    apt-get install -y ffmpeg imagemagick ghostscript texlive texlive-latex-extra texlive-fonts-recommended && \
+    # Remove the package cache to reduce the image size
+    rm -rf /var/lib/apt/lists/*
 
 # Copy maintenance scripts
 COPY ./docker/mediawiki/scripts /usr/local/bin/maintenance

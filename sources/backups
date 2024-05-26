@@ -13,9 +13,9 @@ db_backups() {
 img_backups() {
     local service_name="$1"
     if docker_service_is_running "${service_name}"; then
-        docker compose -f "${docker_compose}" exec ${service_name} bash -c "run_as $(whoami) $(id -u) yarsin backups imgs"
+        docker compose -f "${docker_compose}" exec ${service_name} bash -c "run_as $(whoami) $(id -u) yarsin backups mds"
     else
-        docker compose -f "${docker_compose}" run --rm ${service_name} bash -c "run_as $(whoami) $(id -u) yarsin backups imgs"
+        docker compose -f "${docker_compose}" run --rm ${service_name} bash -c "run_as $(whoami) $(id -u) yarsin backups mds"
     fi
 }
 
@@ -32,11 +32,11 @@ shift
 if [[ "$function_name" = "data" ]]; then
     db_name="${1:-"${DEFAULT_DATABASE}"}"
     db_backups data "${db_name}"
-elif [[ "$function_name" = "imgs" ]]; then
+elif [[ "$function_name" = "mds" ]]; then
     service_name="${1:-"${DEFAULT_SERVICE}"}"
     img_backups "${service_name}"
 elif [[ "$function_name" = "dbms" ]]; then
     db_backups dbms "$@"
 else
-    message_error "Invalid function name. Available functions: data, imgs, dbms"
+    message_error "Invalid function name. Available functions: data, mds, dbms"
 fi

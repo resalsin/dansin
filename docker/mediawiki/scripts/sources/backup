@@ -7,8 +7,8 @@ set -o pipefail
 # Set the script to exit if it tries to use unset variables
 set -o nounset
 
-# Function to create a backup of images
-backup_imgs() {
+# Function to create a backup of medias
+backup_mds() {
     local backup_name=""
 
     # Process named arguments
@@ -32,14 +32,14 @@ backup_imgs() {
         backup_path="${BACKUP_DIR}/${BACKUP_FILE_PREFIX}___$(date +'%Y_%m_%d__%H_%M_%S')___${BACKUP_FILE_SUFFIX}.tar.xz"
     fi
 
-    # Create a tar archive of the images directory without printing tar messages and removing leading '/'
+    # Create a tar archive of the medias directory without printing tar messages and removing leading '/'
     (tar -cvf - ${BACKUP_SOURCE} | xz -c -z >${backup_path}) 2>/dev/null &
     # Display a spinner message indicating the backup and compression process
     spinner "Creating the tar archive of '${BACKUP_SOURCE}' and compress it using xz." ||
         (rm ${backup_path} && exit 1)
     # Check the exit status of the tar function
     if [[ $? -eq 0 ]]; then # If backup is successful, display a success message
-        message_success "Images backup successfully created at: '${backup_path}'"
+        message_success "Medias backup successfully created at: '${backup_path}'"
     else # If backup fails, display an error message and exit
         message_error "Backup failed. Please check the tar command."
         exit 1
@@ -54,12 +54,12 @@ fi
 
 # Call the specified function with the provided arguments
 case $1 in
-"imgs")
+"mds")
     shift
-    backup_imgs "$@"
+    backup_mds "$@"
     ;;
 *)
-    message_error "Invalid function name. Available functions: imgs"
+    message_error "Invalid function name. Available functions: mds"
     exit 1
     ;;
 esac

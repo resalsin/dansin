@@ -44,20 +44,20 @@ backup_data() {
     fi
 }
 
-# Function: backup_imgs
-# Description: Backups images
+# Function: backup_mds
+# Description: Backups medias
 # Arguments:
 #   $1: Service name
 #   $2: Backup name
-backup_imgs() {
+backup_mds() {
     local service="$1"
     local backup_name="$2"
 
-    # Execute backup command for the images
+    # Execute backup command for the medias
     if docker_service_is_running "db"; then
-        docker compose -f "${docker_compose}" exec "${service}" bash -c "run_as $(whoami) $(id -u) yarsin backup imgs -n "${backup_name}""
+        docker compose -f "${docker_compose}" exec "${service}" bash -c "run_as $(whoami) $(id -u) yarsin backup mds -n "${backup_name}""
     else
-        docker compose -f "${docker_compose}" run --rm "${service}" bash -c "run_as $(whoami) $(id -u) yarsin backup imgs -n "${backup_name}""
+        docker compose -f "${docker_compose}" run --rm "${service}" bash -c "run_as $(whoami) $(id -u) yarsin backup mds -n "${backup_name}""
     fi
 }
 
@@ -66,7 +66,7 @@ persian_date="$(gregorian_to_persian)__$(date +'%H_%M_%S')"
 
 # Check if there are no command line arguments
 if [[ $# -eq 0 ]]; then
-    # Backup data and images for default service
+    # Backup data and medias for default service
     backup_data ${DEFAULT_DATABASE} "${DEFAULT_SERVICE}/${DEFAULT_DATABASE}___${persian_date}___data.sql.gz"
     exit 0
 fi
@@ -80,16 +80,16 @@ if [[ "$function_name" = "data" ]]; then
     db_name="${1:-"${DEFAULT_DATABASE}"}"
     service_name="$(get_service_name $db_name)"
     backup_data "${db_name}" "${service_name}/${db_name}___${persian_date}___data.sql.gz"
-elif [[ "$function_name" = "imgs" ]]; then
+elif [[ "$function_name" = "mds" ]]; then
     service_name="${1:-"${DEFAULT_SERVICE}"}"
-    backup_imgs "${service_name}" "${service_name}___${persian_date}___imgs.tar.xz"
+    backup_mds "${service_name}" "${service_name}___${persian_date}___mds.tar.xz"
 elif [[ "$function_name" = "dbms" ]]; then
     backup_dbms "${DBMS_BACKUP_FILE_PREFIX}___${persian_date}___dbms.sql.gz"
 elif [[ "$function_name" = "full" ]]; then
     service_name="${1:-"${DEFAULT_SERVICE}"}"
     db_name="${service_name}_db"
     backup_data "${db_name}" "${service_name}/${db_name}___${persian_date}___data.sql.gz"
-    backup_imgs "${service_name}" "${db_name}___${persian_date}___imgs.tar.xz"
+    backup_mds "${service_name}" "${db_name}___${persian_date}___mds.tar.xz"
 else
-    message_error "Invalid function name. Available functions: data, imgs, full, dbms"
+    message_error "Invalid function name. Available functions: data, mds, full, dbms"
 fi

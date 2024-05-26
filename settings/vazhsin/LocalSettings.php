@@ -110,8 +110,9 @@ $wgImageMagickConvertCommand = "/usr/bin/convert";
 $wgFileExtensions[] = 'mp3';
 // Allow all image formats
 $wgFileExtensions = array_merge($wgFileExtensions, ['png', 'gif', 'jpg', 'jpeg', 'svg', 'bmp']);
-// Set the upload directory to /medias
-$wgUploadDirectory = "$IP/medias";
+// Set the upload directory to /var/www/html/mediafiles
+$wgUploadDirectory = "$IP/mediafiles";
+$wgUploadPath = "/mediafiles";
 // Set the maximum upload file size to 2MB
 $wgMaxUploadSize = 2 * 1024 * 1024; // 2MB in bytes
 
@@ -203,3 +204,7 @@ wfLoadExtension( 'InputBox' );
 # Add more configuration options below.
 
 $wgGroupPermissions['sysop']['interwiki'] = true;
+
+# TimedMediaHandler
+wfLoadExtension( 'TimedMediaHandler' );
+$wgFFmpegLocation = '/usr/bin/ffmpeg'; // Most common ffmpeg path on Linux

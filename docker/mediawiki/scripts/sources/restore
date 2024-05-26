@@ -8,7 +8,7 @@ set -o pipefail
 set -o nounset
 
 # Function to restore the database
-restore_imgs() {
+restore_mds() {
     # Initialize variables
     local backup_name=""
 
@@ -37,27 +37,27 @@ restore_imgs() {
         exit 1
     fi
 
-    # Restore the images backup to the appropriate directory
+    # Restore the medias backup to the appropriate directory
     rm -rf "${BACKUP_DESTINATION}"/* 2>/dev/null &
-    spinner "Removing images in '${BACKUP_DESTINATION}'"
+    spinner "Removing medias in '${BACKUP_DESTINATION}'"
     # Check the exit status of the gunzip function
     if [[ $? -eq 0 ]]; then
-        message_success "Images inside '${BACKUP_DESTINATION}' have been removed."
+        message_success "Medias inside '${BACKUP_DESTINATION}' have been removed."
     else
-        message_error "Failed to remove the images into '${BACKUP_DESTINATION}'. Restore process aborted."
+        message_error "Failed to remove the medias into '${BACKUP_DESTINATION}'. Restore process aborted."
         exit 1
     fi
 
     (xz -d -c "${backup_file_name}" | tar -xf - -C /) 2>/dev/null &
-    spinner "Restoring images from '$backup_file_name' to '${BACKUP_DESTINATION}'"
+    spinner "Restoring medias from '$backup_file_name' to '${BACKUP_DESTINATION}'"
     # Check the exit status of the gunzip function
     if [[ $? -eq 0 ]]; then
-        message_success "All images restored from '${backup_file_name}' backup to '${BACKUP_DESTINATION}'."
+        message_success "All medias restored from '${backup_file_name}' backup to '${BACKUP_DESTINATION}'."
     else
         message_error "Failed to restore the backup '${backup_file_name}' to '${BACKUP_DESTINATION}'. Restore process aborted."
         exit 1
     fi
-    message_success "Images backup successfully restored."
+    message_success "Medias backup successfully restored."
 }
 
 # Check for the function name argument
@@ -71,10 +71,10 @@ case $1 in
 "init")
     # Initializa the database
     message_welcome "You are about to initialize the database with factory data."
-    restore_imgs "$@"
+    restore_mds "$@"
     message_success "The initialization process has been successfully completed. You can now start using your wikis..."
     ;;
-"imgs")
+"mds")
     shift
     backup_name=""
     # Display a welcoming message before starting the image file restoration
@@ -84,11 +84,11 @@ case $1 in
     list_backups "*_${BACKUP_FILE_SUFFIX}.tar.xz"
     read -r -p "  Enter the name of the image backup you wish to restore:   " backup_name
     # Initiate the restoration process for the selected image backup
-    restore_imgs -n "$backup_name" "$@"
+    restore_mds -n "$backup_name" "$@"
     ;;
 *)
     # Display an error message for an invalid function name
-    message_error "Invalid function name. Available functions: imgs"
+    message_error "Invalid function name. Available functions: mds"
     exit 1
     ;;
 esac
