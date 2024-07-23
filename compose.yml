@@ -5,7 +5,8 @@ services:
       dockerfile: ./docker/mediawiki/Dockerfile
       target: mediawiki_run_stage
       args:
-        - MEDIA_WIKI_VERSION=1.41
+        - MEDIA_WIKI_VERSION=1.42
+        - BRANCH_TAG=REL1_42
         - INSTANCE_BUILD=matsin
     container_name: dansin_matsin
     ports:
@@ -33,7 +34,8 @@ services:
       dockerfile: ./docker/mediawiki/Dockerfile
       target: mediawiki_run_stage
       args:
-        - MEDIA_WIKI_VERSION=1.41
+        - MEDIA_WIKI_VERSION=1.42
+        - BRANCH_TAG=REL1_42
         - INSTANCE_BUILD=vazhsin
     container_name: dansin_vazhsin
     ports:
@@ -61,7 +63,8 @@ services:
       dockerfile: ./docker/mediawiki/Dockerfile
       target: mediawiki_run_stage
       args:
-        - MEDIA_WIKI_VERSION=1.41
+        - MEDIA_WIKI_VERSION=1.42
+        - BRANCH_TAG=REL1_42
         - INSTANCE_BUILD=resasin
     container_name: dansin_resasin
     ports:

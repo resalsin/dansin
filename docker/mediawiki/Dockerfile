@@ -1,5 +1,5 @@
 # Set the default value for the MEDIA_WIKI_VERSION argument
-ARG MEDIA_WIKI_VERSION=1.39
+ARG MEDIA_WIKI_VERSION=1.42
 
 ##########################################################
 #                     The base image                     #
@@ -8,6 +8,7 @@ ARG MEDIA_WIKI_VERSION=1.39
 FROM mediawiki:${MEDIA_WIKI_VERSION} AS mediawiki
 
 
+ARG BRANCH_TAG=REL1_42
 ##########################################################
 #    Create a build stage for MediaWiki dependencies     #
 ##########################################################
@@ -40,8 +41,8 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 WORKDIR /var/www/html
 
 # Clone UniversalLanguageSelector extension
-RUN git clone --depth=1 --branch 2024.01 https://gerrit.wikimedia.org/r/mediawiki/extensions/UniversalLanguageSelector ./extensions/UniversalLanguageSelector
-RUN git clone --depth=1 --branch REL1_41 https://gerrit.wikimedia.org/r/mediawiki/extensions/TimedMediaHandler /var/www/html/extensions/TimedMediaHandler
+RUN git clone --depth=1 --branch ${BRANCH_TAG} https://gerrit.wikimedia.org/r/mediawiki/extensions/UniversalLanguageSelector ./extensions/UniversalLanguageSelector
+RUN git clone --depth=1 --branch ${BRANCH_TAG} https://gerrit.wikimedia.org/r/mediawiki/extensions/TimedMediaHandler /var/www/html/extensions/TimedMediaHandler
 
 # Set the INSTANCE_BUILD argument
 ARG INSTANCE_BUILD=matsin
@@ -71,7 +72,7 @@ FROM mediawiki AS mediawiki_run_stage
 # Update the package index to ensure you install the latest versions of packages
 RUN apt-get update && \
     # Install the required packages: ffmpeg, imagemagick, ghostscript, texlive, texlive-latex-extra, texlive-fonts-recommended
-    apt-get install -y ffmpeg imagemagick ghostscript texlive texlive-latex-extra texlive-fonts-recommended && \
+    apt-get install -y ffmpeg imagemagick ghostscript texlive && \
     # Remove the package cache to reduce the image size
     rm -rf /var/lib/apt/lists/*
 
