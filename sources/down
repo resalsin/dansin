@@ -7,6 +7,6 @@ else
 fi
 
 # Check if containers for matsin, vazhsin, and resasin services are not running
-if ! docker compose ps --format '{{.Names}}' | grep -q -E '(vazhsin|matsin|resasin)$'; then
+if ! docker compose ps --format '{{.Names}}' | grep -q -E '(vazhsin|matsin|resasin|farsin)$'; then
     docker compose -f "${docker_compose}" down # Stop all services
 fi
