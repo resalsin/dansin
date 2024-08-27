@@ -84,6 +84,7 @@ RUN mv /usr/local/bin/maintenance/* /usr/local/bin \
 
 # Copy the WikiMedia files from the mediawiki_build_stage to /var/www/html
 COPY --chown=www-data:www-data --from=mediawiki_build_stage /var/www/html /var/www/html
+COPY --chown=www-data:www-data ./docker/mediawiki/configs /var/www/html/
 
 # Expose port 80 for the container
 EXPOSE 80

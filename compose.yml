@@ -114,6 +114,35 @@ services:
       - db
     networks:
       - brdgnet
+    
+  amoosin:
+    build:
+      context: .
+      dockerfile: ./docker/mediawiki/Dockerfile
+      target: mediawiki_run_stage
+      args:
+        - MEDIA_WIKI_VERSION=1.42
+        - BRANCH_TAG=REL1_42
+        - INSTANCE_BUILD=amoosin
+    container_name: dansin_amoosin
+    ports:
+      - "8084:80"
+    environment:
+      - MEDIAWIKI_DB_TYPE=${AMOOSIN_DB_TYPE}
+      - MEDIAWIKI_DB_HOST=${AMOOSIN_DB_HOST}
+      - MEDIAWIKI_DB_PORT=${AMOOSIN_DB_PORT}
+      - MEDIAWIKI_DB_NAME=${AMOOSIN_DB_NAME}
+      - MEDIAWIKI_DB_USER=${AMOOSIN_DB_USER}
+      - MEDIAWIKI_DB_PASSWORD=${AMOOSIN_DB_PASSWORD}
+    volumes:
+      - ./backups/amoosin:/backups
+      - ./public/amoosin:/var/www/html/public
+      - ./settings/amoosin/LocalSettings.php:/var/www/html/LocalSettings.php
+      - amoosin_medias:/var/www/html/mediafiles
+    depends_on:
+      - db
+    networks:
+      - brdgnet
 
   db:
     build:
@@ -127,7 +156,7 @@ services:
       - .env
     volumes:
       - ./backups:/backups
-      - matsin_data:/var/lib/mysql
+      - dansin_data:/var/lib/mysql
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     networks:
       - brdgnet
@@ -156,5 +185,7 @@ volumes:
   farsin_medias: {}
   # Define an external volume named resasin_medias
   resasin_medias: {}
-  # Define an external volume named matsin_data
-  matsin_data: {}
+  # Define an external volume named amoosin_medias
+  amoosin_medias: {}
+  # Define an external volume named dansin_data
+  dansin_data: {}
