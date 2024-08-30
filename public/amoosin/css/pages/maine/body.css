@@ -1,0 +1,61 @@
+.ha-main-body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.ha-main-ds {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ha-main-ds .ha-header {
+  display: flex;
+  flex-flow: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ha-main-ds .ha-header .ha-icon {
+  font-size: 2.5rem;
+  margin-right: 0.6rem;
+  color: #4b70f5;
+}
+
+.ha-main-ds .ha-header .ha-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.ha-main-ds .ha-content {
+  margin-top: 0.625rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+#ha-main-target {
+  grid-row-end: span 2;
+}
+
+#ha-main-guide {
+  grid-column-end: span 2;
+}
+
+@media (max-width: 768px) {
+  .ha-main-body {
+    grid-template-columns: 1fr;
+  }
+
+  #ha-main-target {
+    grid-row-end: span 1;
+  }
+
+  #ha-main-guide {
+    grid-column-end: span 1;
+  }
+}

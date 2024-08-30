@@ -169,6 +169,7 @@ $wgGroupPermissions['*']['edit'] = false;
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, e.g. 'vector' or 'monobook':
 $wgDefaultSkin = 'vector-2022';
+$wgDefaultMobileSkin = 'minerva';
 
 # Enabled skins.
 # The following skins were automatically enabled:
@@ -207,6 +208,7 @@ wfLoadExtension('Echo');
 wfLoadExtension('InputBox');
 wfLoadExtension('Interwiki');
 wfLoadExtension('PageImages');
+wfLoadExtension('MobileFrontend');
 
 
 # End of automatically generated settings.

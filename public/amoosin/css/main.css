@@ -1,12 +1,13 @@
+@import url("./pages/index.css");
+
 @font-face {
   font-family: "Vazirmatn";
-  src: url("/public/fonts/webfonts/Vazirmatn[wght].woff2")
-      format("woff2 supports variations"),
+  src: url("/public/fonts/webfonts/Vazirmatn[wght].woff2") format("woff2"),
     url("/public/fonts/webfonts/Vazirmatn[wght].woff2")
       format("woff2-variations");
-  font-weight: 100 900;
+  font-weight: 100 900; /* Variants from 100 to 900 */
   font-style: normal;
-  font-display: swap;
+  font-display: swap; /* improves loading performance */
 }
 
 @font-face {
@@ -17,7 +18,8 @@
     url("/public/fonts/shabnam/Shabnam.woff2") format("woff2"),
     url("/public/fonts/shabnam/Shabnam.woff") format("woff"),
     url("/public/fonts/shabnam/Shabnam.ttf") format("truetype");
-  font-weight: normal;
+  font-weight: normal; /* normal weight */
+  font-display: swap; /* improves loading performance */
 }
 
 @font-face {
@@ -28,9 +30,11 @@
     url("/public/fonts/shabnam/Shabnam-Bold.woff2") format("woff2"),
     url("/public/fonts/shabnam/Shabnam-Bold.woff") format("woff"),
     url("/public/fonts/shabnam/Shabnam-Bold.ttf") format("truetype");
-  font-weight: bold;
+  font-weight: bold; /* bold weight */
+  font-display: swap; /* improves loading performance */
 }
 
+/* Combine the following into a single @font-face */
 @font-face {
   font-family: "Shabnam";
   src: url("/public/fonts/shabnam/Shabnam-Thin.eot");
@@ -39,7 +43,8 @@
     url("/public/fonts/shabnam/Shabnam-Thin.woff2") format("woff2"),
     url("/public/fonts/shabnam/Shabnam-Thin.woff") format("woff"),
     url("/public/fonts/shabnam/Shabnam-Thin.ttf") format("truetype");
-  font-weight: 100;
+  font-weight: 100; /* Thin weight */
+  font-display: swap; /* improves loading performance */
 }
 
 @font-face {
@@ -51,6 +56,7 @@
     url("/public/fonts/shabnam/Shabnam-Light.woff") format("woff"),
     url("/public/fonts/shabnam/Shabnam-Light.ttf") format("truetype");
   font-weight: 300;
+  font-display: swap; /* improves loading performance */
 }
 
 @font-face {
@@ -62,24 +68,26 @@
     url("/public/fonts/shabnam/Shabnam-Medium.woff") format("woff"),
     url("/public/fonts/shabnam/Shabnam-Medium.ttf") format("truetype");
   font-weight: 500;
+  font-display: swap; /* improves loading performance */
 }
 
-html[lang="fa"] body {
+body {
   font-family: "Vazirmatn", sans-serif;
   font-weight: 400;
 }
 
-html[lang="fa"] h1 {
-  font-family: "Shabnam", sans-serif;
+h1,
+h2,
+h3 {
+  font-family: "Shabnam", sans-serif !important; /* Consistent font family */
+}
+
+h1 {
   font-weight: 700;
 }
-
-html[lang="fa"] h2 {
-  font-family: "Shabnam", sans-serif;
+h2 {
   font-weight: 500;
 }
-
-html[lang="fa"] h3 {
-  font-family: "Shabnam", sans-serif;
+h3 {
   font-weight: 400;
 }
