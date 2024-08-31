@@ -11,7 +11,7 @@
 # https://www.mediawiki.org/wiki/Manual:Configuration_settings
 
 # Protect against web entry
-if ( !defined( 'MEDIAWIKI' ) ) {
+if (!defined('MEDIAWIKI')) {
 	exit;
 }
 
@@ -46,8 +46,8 @@ $actions = [
 	'info',
 ];
 // Assign a path for each action in the array
-foreach ( $actions as $action ) {
-  $wgActionPaths[$action] = "/wiki/$1/$action";
+foreach ($actions as $action) {
+	$wgActionPaths[$action] = "/wiki/$1/$action";
 }
 // Assign a path for the 'view' action
 $wgActionPaths['view'] = "/wiki/$1";
@@ -67,13 +67,16 @@ $wgLogos = [
 	'icon' => "$wgResourceBasePath/public/icon.svg",
 ];
 
+// Set the favicon  
+$wgFavicon = "$wgResourceBasePath/public/favicon.png";
+
 ## UPO means: this is also a user preference option
 
 $wgEnableEmail = true;
 $wgEnableUserEmail = true; # UPO
 
-$wgEmergencyContact = "";
-$wgPasswordSender = "";
+$wgEmergencyContact = 'noreply@localhost.com';
+$wgPasswordSender = 'noreply@localhost.com';
 
 $wgEnotifUserTalk = false; # UPO
 $wgEnotifWatchlist = false; # UPO
@@ -103,18 +106,18 @@ $wgMemCachedServers = [];
 
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then set this to true:
-$wgEnableUploads = true;
-$wgUseImageMagick = true;
-$wgImageMagickConvertCommand = "/usr/bin/convert";
-// Allow MP3 files
-$wgFileExtensions[] = 'mp3';
-// Allow all image formats
-$wgFileExtensions = array_merge($wgFileExtensions, ['png', 'gif', 'jpg', 'jpeg', 'svg', 'bmp']);
-// Set the upload directory to /var/www/html/mediafiles
-$wgUploadDirectory = "$IP/mediafiles";
-$wgUploadPath = "/mediafiles";
-// Set the maximum upload file size to 2MB
-$wgMaxUploadSize = 2 * 1024 * 1024; // 2MB in bytes
+$wgEnableUploads = true; // Enable file uploads in MediaWiki  
+$wgUseImageMagick = true; // Use ImageMagick for image processing instead of GD  
+$wgImageMagickConvertCommand = "/usr/bin/convert"; // Path to the ImageMagick convert command  
+// Allow MP3 files  
+$wgFileExtensions[] = 'mp3'; // Add 'mp3' to the list of allowed file extensions for uploads  
+// Allow all image formats  
+$wgFileExtensions = array_merge($wgFileExtensions, ['png', 'gif', 'jpg', 'jpeg', 'svg', 'bmp']); // Merge additional image formats into the allowed file extensions  
+// Set the upload directory to /var/www/html/mediafiles  
+$wgUploadDirectory = "$wgResourceBasePath/mediafiles"; // Specify the directory where uploaded files will be stored  
+$wgUploadPath = "/mediafiles"; // Define the web-accessible path for uploaded files  
+// Set the maximum upload file size to 2MB  
+$wgMaxUploadSize = 2 * 1024 * 1024; // Limit the maximum file size for uploads to 2 megabytes (MB)
 
 # InstantCommons allows wiki to use images from https://commons.wikimedia.org
 $wgUseInstantCommons = false;
@@ -128,7 +131,12 @@ $wgPingback = true;
 $wgLanguageCode = "fa";
 
 # Time zone
-$wgLocaltimezone = "UTC";
+$wgDefaultTimeZone = 'Asia/Tehran';
+// Set the calendar to the Iranian calendar (Jalali)  
+$wgDefaultCalendar = 'jalali';
+
+// Set the default date format to Jalali  
+$wgDefaultDateFormat = 'jalali';
 
 ## Set $wgCacheDirectory to a writable directory on the web server
 ## to make your wiki go slightly faster. The directory should not
@@ -148,9 +156,9 @@ $wgUpgradeKey = "78aff9d9243449bd";
 ## appropriate copyright notice / icon. GNU Free Documentation
 ## License and Creative Commons licenses are supported so far.
 $wgRightsPage = ""; # Set to the title of a wiki page that describes your license/copyright
-$wgRightsUrl = "https://creativecommons.org/licenses/by/4.0/";
-$wgRightsText = "استناد رایج سازنده";
-$wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-by.png";
+$wgRightsUrl = 'https://creativecommons.org/publicdomain/zero/1.0/deed.fa';
+$wgRightsText = 'CC0 (Creative Commons Zero) [مالکیت عمومی]';
+$wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-0.png";
 
 # Path to the GNU diff3 utility. Used for conflict resolution.
 $wgDiff3 = "/usr/bin/diff3";
@@ -161,43 +169,44 @@ $wgGroupPermissions['*']['edit'] = false;
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, e.g. 'vector' or 'monobook':
-$wgDefaultSkin = "Timeless";
+$wgDefaultSkin = 'vector-2022';
+$wgDefaultMobileSkin = 'minerva';
 
 # Enabled skins.
 # The following skins were automatically enabled:
-wfLoadSkin( 'MinervaNeue' );
-wfLoadSkin( 'MonoBook' );
-wfLoadSkin( 'Timeless' );
-wfLoadSkin( 'Vector' );
+wfLoadSkin('MinervaNeue');
+wfLoadSkin('MonoBook');
+wfLoadSkin('Timeless');
+wfLoadSkin('Vector');
 
 
 # Enabled extensions. Most of the extensions are enabled by adding
 # wfLoadExtension( 'ExtensionName' );
 # to LocalSettings.php. Check specific extension documentation for more details.
 # The following extensions were automatically enabled:
-wfLoadExtension( 'CategoryTree' );
-wfLoadExtension( 'Cite' );
-wfLoadExtension( 'CiteThisPage' );
-wfLoadExtension( 'CodeEditor' );
-wfLoadExtension( 'Gadgets' );
-wfLoadExtension( 'ImageMap' );
-wfLoadExtension( 'Interwiki' );
-wfLoadExtension( 'Linter' );
-wfLoadExtension( 'Math' );
-wfLoadExtension( 'MultimediaViewer' );
-wfLoadExtension( 'PageImages' );
-wfLoadExtension( 'ParserFunctions' );
-wfLoadExtension( 'PdfHandler' );
-wfLoadExtension( 'Poem' );
-wfLoadExtension( 'ReplaceText' );
-wfLoadExtension( 'Scribunto' );
-wfLoadExtension( 'SyntaxHighlight_GeSHi' );
-wfLoadExtension( 'TemplateData' );
-wfLoadExtension( 'UniversalLanguageSelector' );
-wfLoadExtension( 'Variables' );
-wfLoadExtension( 'VisualEditor' );
-wfLoadExtension( 'WikiEditor' );
-wfLoadExtension( 'InputBox' );
+wfLoadExtension('CategoryTree');
+wfLoadExtension('Cite');
+wfLoadExtension('CiteThisPage');
+wfLoadExtension('CodeEditor');
+wfLoadExtension('Gadgets');
+wfLoadExtension('ImageMap');
+wfLoadExtension('Interwiki');
+wfLoadExtension('Linter');
+wfLoadExtension('Math');
+wfLoadExtension('MultimediaViewer');
+wfLoadExtension('PageImages');
+wfLoadExtension('ParserFunctions');
+wfLoadExtension('PdfHandler');
+wfLoadExtension('Poem');
+wfLoadExtension('ReplaceText');
+wfLoadExtension('Scribunto');
+wfLoadExtension('SyntaxHighlight_GeSHi');
+wfLoadExtension('TemplateData');
+wfLoadExtension('UniversalLanguageSelector');
+wfLoadExtension('Variables');
+wfLoadExtension('VisualEditor');
+wfLoadExtension('WikiEditor');
+wfLoadExtension('InputBox');
 
 
 # End of automatically generated settings.
@@ -206,7 +215,7 @@ wfLoadExtension( 'InputBox' );
 $wgGroupPermissions['sysop']['interwiki'] = true;
 
 # TimedMediaHandler
-wfLoadExtension( 'TimedMediaHandler' );
+wfLoadExtension('TimedMediaHandler');
 $wgFFmpegLocation = '/usr/bin/ffmpeg'; // Most common ffmpeg path on Linux
 
 $wgULSEnable = false;

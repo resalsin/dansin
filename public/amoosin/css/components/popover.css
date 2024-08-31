@@ -1,0 +1,43 @@
+.ha-popover-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.ha-popover-trigger {
+  display: inline-block;
+  cursor: help;
+}
+
+.ha-popover {
+  display: none;
+  position: absolute;
+  width: max-content;
+  max-width: 15rem;
+  bottom: 125%;
+  left: -125%;
+  margin-left: 8px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  z-index: 10;
+}
+
+.ha-popover.active {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+.ha-popover-default {
+    
+}
+
+.ha-popover-meaning {
+
+}
+
+.ha-popover-translate {
+    
+}
