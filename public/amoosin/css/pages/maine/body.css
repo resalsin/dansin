@@ -48,14 +48,23 @@
 
 @media (max-width: 768px) {
   .ha-main-body {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #ha-main-about {
+    order: 1;
+  }
+
+  #ha-main-describe {
+    order: 2;
   }
 
   #ha-main-target {
-    grid-row-end: span 1;
+    order: 3;
   }
 
   #ha-main-guide {
-    grid-column-end: span 1;
+    order: 4;
   }
 }
