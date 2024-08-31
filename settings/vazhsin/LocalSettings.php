@@ -202,11 +202,14 @@ wfLoadExtension('ReplaceText');
 wfLoadExtension('Scribunto');
 wfLoadExtension('SyntaxHighlight_GeSHi');
 wfLoadExtension('TemplateData');
+wfLoadExtension('TimedMediaHandler');
 wfLoadExtension('UniversalLanguageSelector');
 wfLoadExtension('Variables');
 wfLoadExtension('VisualEditor');
 wfLoadExtension('WikiEditor');
+wfLoadExtension('Echo');
 wfLoadExtension('InputBox');
+wfLoadExtension('MobileFrontend');
 
 
 # End of automatically generated settings.
