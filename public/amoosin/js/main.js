@@ -38,3 +38,16 @@ document.addEventListener("click", (event) => {
     }
   });
 });
+
+/**
+ * Pronunciation component
+ */
+const pros = document.querySelectorAll(
+  ".ha-pronunciation-wrapper .ha-pronunciation > span"
+);
+
+for (pro of pros) {
+  let rgx = /َ|ِ|ُ|ْ|ّ/g;
+
+  pro.innerHTML = pro.innerHTML.replace(rgx, '<span class="ha-erab">$&</span>');
+}

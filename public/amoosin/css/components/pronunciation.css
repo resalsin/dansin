@@ -1,0 +1,31 @@
+li:has(> span.ha-pronunciation-wrapper) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ha-pronunciation-wrapper {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0.5rem;
+  font-size: 1.1em;
+  font-family: "B Yekan", system-ui, "Noto Sans Arabic", "DejaVu Sans",
+    sans-serif;
+}
+
+.ha-pronunciation-wrapper .ha-pronunciation-icon {
+  color: #4b70f5;
+}
+
+.ha-pronunciation-wrapper .ha-pronunciation {
+  font-size: 1.1em;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  font-weight: normal;
+}
+
+.ha-pronunciation-wrapper .ha-pronunciation .ha-erab {
+  text-shadow: 0 0 1px rgba(146, 26, 64, 0.5);
+  color: #921a40;
+}

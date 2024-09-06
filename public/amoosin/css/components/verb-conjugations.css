@@ -1,0 +1,52 @@
+.ha-farsi-verb-conjugations {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.ha-farsi-verb-conjugations .ha-verb-table {
+  border-radius: 0.3em;
+  padding: 0.2em;
+  background-color: #4b70f5;
+}
+
+.ha-farsi-verb-conjugations .ha-verb-table .ha-table-header {
+  background-color: #173b45;
+  color: white;
+}
+
+.ha-farsi-verb-conjugations .ha-verb-table .ha-table-header a.new {
+  color: white;
+  text-shadow: -1px -1px 0 rgb(239, 37, 95, 0.5),
+    1px -1px 0 rgb(239, 37, 95, 0.5), -1px 1px 0 rgb(239, 37, 95, 0.5),
+    1px 1px 0 rgb(239, 37, 95, 0.5);
+}
+
+.ha-farsi-verb-conjugations .ha-verb-table .ha-table-header a:not(.new) {
+  color: white;
+  text-shadow: -1px -1px 0 rgb(39, 123, 192, 0.5),
+    1px -1px 0 rgb(39, 123, 192, 0.5), -1px 1px 0 rgb(39, 123, 192, 0.5),
+    1px 1px 0 rgb(39, 123, 192, 0.5);
+}
+
+.ha-farsi-verb-conjugations .ha-verb-table .ha-table-data {
+  background-color: white;
+  padding: 0.1em 0.5em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.ha-farsi-verb-conjugations .ha-verb-table tbody tr:first-child,
+.ha-farsi-verb-conjugations .ha-verb-table tbody tr:first-child a,
+.ha-farsi-verb-conjugations .ha-verb-table .mw-collapsible-text {
+  color: white;
+  font-weight: bold;
+}
+
+.ha-farsi-verb-conjugations .ha-verb-table .ha-past,
+.ha-farsi-verb-conjugations .ha-verb-table .ha-present,
+.ha-farsi-verb-conjugations .ha-verb-table .ha-future {
+  border: 2px solid white;
+  padding: 0.2em 0.2em;
+  border-radius: 0.3rem;
+}

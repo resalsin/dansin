@@ -1,0 +1,24 @@
+.ha-farsi-verb-conjugation {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.ha-farsi-verb-conjugation .ha-icon {
+  color: #4b70f5;
+}
+
+.ha-farsi-verb-conjugation .ha-participate {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0.2em;
+}
+
+.ha-farsi-verb-conjugation .ha-name {
+  font-size: smaller;
+}
+
+.ha-farsi-verb-conjugation .ha-form {
+  font-weight: bold;
+}

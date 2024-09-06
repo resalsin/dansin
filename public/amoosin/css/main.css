@@ -72,23 +72,34 @@
   font-display: swap; /* improves loading performance */
 }
 
-body {
-  font-family: "Vazirmatn", sans-serif;
+@font-face {
+  font-family: "B Yekan";
+  src: url("/public/fonts/B-Yekan/B-Yekan.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html[lang="fa"] body {
+  font-family: "Vazirmatn", system-ui, "Noto Sans Arabic", "DejaVu Sans",
+    sans-serif;
   font-weight: 400;
 }
 
-h1,
-h2,
-h3 {
-  font-family: "Shabnam", sans-serif !important; /* Consistent font family */
+html[lang="fa"] h1,
+html[lang="fa"] h2,
+html[lang="fa"] h3 {
+  font-family: "Shabnam", system-ui, "Noto Sans Arabic", "DejaVu Sans",
+    sans-serif !important; /* Consistent font family */
 }
 
-h1 {
+html[lang="fa"] h1 {
   font-weight: 700;
 }
-h2 {
+
+html[lang="fa"] h2 {
   font-weight: 500;
 }
-h3 {
+
+html[lang="fa"] h3 {
   font-weight: 400;
 }

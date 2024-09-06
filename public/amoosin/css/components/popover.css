@@ -13,15 +13,16 @@
   position: absolute;
   width: max-content;
   max-width: 15rem;
-  bottom: 125%;
-  left: -125%;
-  margin-left: 8px;
+  top: 0;
+  left: 0;
+  transform: translate(-75%, -110%);
+  z-index: 10;
   padding: 10px;
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
-  z-index: 10;
+  color: black;
 }
 
 .ha-popover.active {
@@ -30,8 +31,8 @@
   opacity: 1;
 }
 
-.ha-popover-default {
-    
+/* .ha-popover-default {
+
 }
 
 .ha-popover-meaning {
@@ -39,5 +40,5 @@
 }
 
 .ha-popover-translate {
-    
-}
+
+} */
