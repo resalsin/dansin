@@ -221,6 +221,9 @@ wfLoadExtension( 'WikiEditor' );
 # End of automatically generated settings.
 # Add more configuration options below.
 
+// Allow users in the 'sysop' group to manage interwiki links
+$wgGroupPermissions['sysop']['interwiki'] = true;
+
 // Set the URL for the draw.io service
 $wgDrawioEditorBaseUrl = "http://drawio:8080"; // Ensure this matches your Docker setup
 
