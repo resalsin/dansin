@@ -13,3 +13,6 @@ data/*
 
 # Draw.io
 *.bkp
+
+# Mediafiles
+mediafiles

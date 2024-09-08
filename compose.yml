@@ -86,7 +86,7 @@ services:
     networks:
       - brdgnet
 
-  farsin:
+  tajrosin:
     build:
       context: .
       dockerfile: ./docker/mediawiki/Dockerfile
@@ -94,27 +94,27 @@ services:
       args:
         - MEDIA_WIKI_VERSION=1.42
         - BRANCH_TAG=REL1_42
-        - INSTANCE_BUILD=farsin
-    container_name: dansin_farsin
+        - INSTANCE_BUILD=tajrosin
+    container_name: dansin_tajrosin
     ports:
       - "8083:80"
     environment:
-      - MEDIAWIKI_DB_TYPE=${FARSIN_DB_TYPE}
-      - MEDIAWIKI_DB_HOST=${FARSIN_DB_HOST}
-      - MEDIAWIKI_DB_PORT=${FARSIN_DB_PORT}
-      - MEDIAWIKI_DB_NAME=${FARSIN_DB_NAME}
-      - MEDIAWIKI_DB_USER=${FARSIN_DB_USER}
-      - MEDIAWIKI_DB_PASSWORD=${FARSIN_DB_PASSWORD}
+      - MEDIAWIKI_DB_TYPE=${TAJROSIN_DB_TYPE}
+      - MEDIAWIKI_DB_HOST=${TAJROSIN_DB_HOST}
+      - MEDIAWIKI_DB_PORT=${TAJROSIN_DB_PORT}
+      - MEDIAWIKI_DB_NAME=${TAJROSIN_DB_NAME}
+      - MEDIAWIKI_DB_USER=${TAJROSIN_DB_USER}
+      - MEDIAWIKI_DB_PASSWORD=${TAJROSIN_DB_PASSWORD}
     volumes:
-      - ./backups/farsin:/backups
-      - ./public/farsin:/var/www/html/public
-      - ./settings/farsin/LocalSettings.php:/var/www/html/LocalSettings.php
-      - farsin_medias:/var/www/html/mediafiles
+      - ./backups/tajrosin:/backups
+      - ./public/tajrosin:/var/www/html/public
+      - ./settings/tajrosin/LocalSettings.php:/var/www/html/LocalSettings.php
+      - tajrosin_medias:/var/www/html/mediafiles
     depends_on:
       - db
     networks:
       - brdgnet
-    
+
   amoosin:
     build:
       context: .
@@ -144,6 +144,46 @@ services:
     networks:
       - brdgnet
 
+  bonchsin:
+    build:
+      context: .
+      dockerfile: ./docker/mediawiki/Dockerfile
+      target: mediawiki_run_stage
+      args:
+        - MEDIA_WIKI_VERSION=1.42
+        - BRANCH_TAG=REL1_42
+        - INSTANCE_BUILD=bonchsin
+    container_name: dansin_bonchsin
+    ports:
+      - "8085:80"
+    environment:
+      - MEDIAWIKI_DB_TYPE=${BONCHSIN_DB_TYPE}
+      - MEDIAWIKI_DB_HOST=${BONCHSIN_DB_HOST}
+      - MEDIAWIKI_DB_PORT=${BONCHSIN_DB_PORT}
+      - MEDIAWIKI_DB_NAME=${BONCHSIN_DB_NAME}
+      - MEDIAWIKI_DB_USER=${BONCHSIN_DB_USER}
+      - MEDIAWIKI_DB_PASSWORD=${BONCHSIN_DB_PASSWORD}
+    volumes:
+      - ./backups/bonchsin:/backups
+      - ./public/bonchsin:/var/www/html/public
+      - ./settings/bonchsin/LocalSettings.php:/var/www/html/LocalSettings.php
+      - bonchsin_medias:/var/www/html/mediafiles
+    depends_on:
+      - db
+      - drawio
+    networks:
+      - brdgnet
+
+  drawio:
+    image: jgraph/drawio
+    container_name: dansin_drawio
+    volumes:
+      - drawio_data:/data
+    ports:
+      - "8089:8080"
+    networks:
+      - brdgnet
+
   db:
     build:
       context: ./docker/mariadb
@@ -165,7 +205,7 @@ services:
     image: phpmyadmin:5.2
     container_name: dansin_admin
     ports:
-      - 8085:80
+      - "8090:80"
     env_file:
       - .env
 
@@ -181,11 +221,15 @@ volumes:
   matsin_medias: {}
   # Define an external volume named vazhsin_medias
   vazhsin_medias: {}
-  # Define an external volume named farsin_medias
-  farsin_medias: {}
+  # Define an external volume named tajrosin_medias
+  tajrosin_medias: {}
   # Define an external volume named resasin_medias
   resasin_medias: {}
   # Define an external volume named amoosin_medias
   amoosin_medias: {}
+  # Define an external volume named bonchsin_medias
+  bonchsin_medias: {}
   # Define an external volume named dansin_data
   dansin_data: {}
+  # Define an external volume named drawio_data
+  drawio_data: {}

@@ -1,3 +1,5 @@
 {
-  "require": {}
+  "require": {
+    "mediawiki/semantic-media-wiki": "^4.2.0"
+  }
 }

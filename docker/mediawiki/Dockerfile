@@ -42,8 +42,10 @@ WORKDIR /var/www/html
 
 # Clone extensions
 RUN git clone --depth=1 --branch ${BRANCH_TAG} https://gerrit.wikimedia.org/r/mediawiki/extensions/UniversalLanguageSelector ./extensions/UniversalLanguageSelector
-RUN git clone --depth=1 --branch ${BRANCH_TAG} https://gerrit.wikimedia.org/r/mediawiki/extensions/TimedMediaHandler /var/www/html/extensions/TimedMediaHandler
-RUN git clone --depth=1 --branch ${BRANCH_TAG} https://gerrit.wikimedia.org/r/mediawiki/extensions/MobileFrontend /var/www/html/extensions/MobileFrontend
+RUN git clone --depth=1 --branch ${BRANCH_TAG} https://gerrit.wikimedia.org/r/mediawiki/extensions/TimedMediaHandler ./extensions/TimedMediaHandler
+RUN git clone --depth=1 --branch ${BRANCH_TAG} https://gerrit.wikimedia.org/r/mediawiki/extensions/MobileFrontend ./extensions/MobileFrontend
+RUN git clone --depth=1 --branch ${BRANCH_TAG} https://gerrit.wikimedia.org/r/mediawiki/extensions/NativeSvgHandler ./extensions/NativeSvgHandler
+RUN git clone --depth=1 --branch ${BRANCH_TAG} https://gerrit.wikimedia.org/r/mediawiki/extensions/PageForms ./extensions/PageForms
 
 # Set the INSTANCE_BUILD argument
 ARG INSTANCE_BUILD=matsin
