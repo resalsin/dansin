@@ -133,7 +133,12 @@ $wgPingback = true;
 $wgLanguageCode = 'fa';
 
 # Time zone
-$wgLocaltimezone = 'UTC';
+$wgDefaultTimeZone = 'Asia/Tehran';
+// Set the calendar to the Iranian calendar (Jalali)  
+$wgDefaultCalendar = 'jalali';
+
+// Set the default date format to Jalali  
+$wgDefaultDateFormat = 'jalali';
 
 ## Set $wgCacheDirectory to a writable directory on the web server
 ## to make your wiki go slightly faster. The directory should not
