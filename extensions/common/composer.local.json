@@ -1,5 +1,6 @@
 {
   "require": {
+    "mediawiki/semantic-media-wiki": "^4.2.0",
     "mediawiki/mermaid": "~3.1"
   },
   "extra": {

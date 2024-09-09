@@ -1,0 +1,129 @@
+.ha-main-header {
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+}
+
+.ha-main-header tbody {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+.ha-main-header tbody tr {
+  display: flex;
+}
+
+.ha-main-header .ha-top-icons td:nth-of-type(2),
+.ha-main-header .ha-top-icons td:nth-of-type(3) {
+  display: none;
+}
+
+.ha-main-header .ha-welcome {
+  align-self: center;
+}
+
+.ha-main-header .ha-statistic {
+  align-self: center;
+}
+
+.ha-main-header .ha-search {
+  align-self: center;
+}
+
+.ha-main-header .bodySearchWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  gap: 0.03rem;
+  font-size: 0;
+}
+
+.ha-main-header input[name="search"] {
+  width: 100%;
+  max-width: 25rem;
+  padding: 0.5rem 0.8rem;
+  border: 2px solid #ccc;
+  border-radius: 0 0.5rem 0.5rem 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.ha-main-header input[name="search"]:focus {
+  border-color: #4b70f5;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+.ha-main-header input[name="search"]::placeholder {
+  color: #aaa;
+  opacity: 1;
+}
+
+.ha-main-header input[name="go"] {
+  padding: 10px 15px;
+  border: 2px solid #ccc;
+  border-radius: 0.5rem 0 0 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+.ha-main-header input[name="go"]:hover {
+  border: 2px solid #aaa;
+}
+
+.ha-main-header .ha-bottom-icons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ha-main-header .ha-bottom-icons td:nth-of-type(1) {
+  display: flex;
+  gap: 1rem;
+}
+
+.ha-main-header .ha-bottom-icons td:nth-of-type(2) {
+  align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+  .ha-main-header .ha-top-icons {
+    display: none;
+  }
+
+  .ha-main-header .ha-welcome td {
+    font-size: 1.7rem !important;
+  }
+
+  .ha-main-header .ha-statistic {
+    align-self: center;
+    margin-top: 1.5rem;
+  }
+
+  .ha-main-header .ha-search {
+    display: none;
+  }
+
+  .ha-main-header .ha-bottom-icons {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .ha-main-header .ha-bottom-icons td:nth-of-type(1) {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .ha-main-header .ha-bottom-icons td:nth-of-type(2) {
+    align-self: flex-end;
+  }
+
+  .page-Main_Page #firstHeading,
+  .mw-special-Allpages #firstHeading {
+    display: none;
+  }
+}

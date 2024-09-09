@@ -1,0 +1,105 @@
+@import url("./pages/index.css");
+@import url("./components/index.css");
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/public/fonts/webfonts/Vazirmatn[wght].woff2") format("woff2"),
+    url("/public/fonts/webfonts/Vazirmatn[wght].woff2")
+      format("woff2-variations");
+  font-weight: 100 900; /* Variants from 100 to 900 */
+  font-style: normal;
+  font-display: swap; /* improves loading performance */
+}
+
+@font-face {
+  font-family: "Shabnam";
+  src: url("/public/fonts/shabnam/Shabnam.eot");
+  src: url("/public/fonts/shabnam/Shabnam.eot?#iefix")
+      format("embedded-opentype"),
+    url("/public/fonts/shabnam/Shabnam.woff2") format("woff2"),
+    url("/public/fonts/shabnam/Shabnam.woff") format("woff"),
+    url("/public/fonts/shabnam/Shabnam.ttf") format("truetype");
+  font-weight: normal; /* normal weight */
+  font-display: swap; /* improves loading performance */
+}
+
+@font-face {
+  font-family: "Shabnam";
+  src: url("/public/fonts/shabnam/Shabnam-Bold.eot");
+  src: url("/public/fonts/shabnam/Shabnam-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("/public/fonts/shabnam/Shabnam-Bold.woff2") format("woff2"),
+    url("/public/fonts/shabnam/Shabnam-Bold.woff") format("woff"),
+    url("/public/fonts/shabnam/Shabnam-Bold.ttf") format("truetype");
+  font-weight: bold; /* bold weight */
+  font-display: swap; /* improves loading performance */
+}
+
+/* Combine the following into a single @font-face */
+@font-face {
+  font-family: "Shabnam";
+  src: url("/public/fonts/shabnam/Shabnam-Thin.eot");
+  src: url("/public/fonts/shabnam/Shabnam-Thin.eot?#iefix")
+      format("embedded-opentype"),
+    url("/public/fonts/shabnam/Shabnam-Thin.woff2") format("woff2"),
+    url("/public/fonts/shabnam/Shabnam-Thin.woff") format("woff"),
+    url("/public/fonts/shabnam/Shabnam-Thin.ttf") format("truetype");
+  font-weight: 100; /* Thin weight */
+  font-display: swap; /* improves loading performance */
+}
+
+@font-face {
+  font-family: "Shabnam";
+  src: url("/public/fonts/shabnam/Shabnam-Light.eot");
+  src: url("/public/fonts/shabnam/Shabnam-Light.eot?#iefix")
+      format("embedded-opentype"),
+    url("/public/fonts/shabnam/Shabnam-Light.woff2") format("woff2"),
+    url("/public/fonts/shabnam/Shabnam-Light.woff") format("woff"),
+    url("/public/fonts/shabnam/Shabnam-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap; /* improves loading performance */
+}
+
+@font-face {
+  font-family: "Shabnam";
+  src: url("/public/fonts/shabnam/Shabnam-Medium.eot");
+  src: url("/public/fonts/shabnam/Shabnam-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("/public/fonts/shabnam/Shabnam-Medium.woff2") format("woff2"),
+    url("/public/fonts/shabnam/Shabnam-Medium.woff") format("woff"),
+    url("/public/fonts/shabnam/Shabnam-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap; /* improves loading performance */
+}
+
+@font-face {
+  font-family: "B Yekan";
+  src: url("/public/fonts/B-Yekan/B-Yekan.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html[lang="fa"] body {
+  font-family: "Vazirmatn", system-ui, "Noto Sans Arabic", "DejaVu Sans",
+    sans-serif;
+  font-weight: 400;
+}
+
+html[lang="fa"] h1,
+html[lang="fa"] h2,
+html[lang="fa"] h3 {
+  font-family: "Shabnam", system-ui, "Noto Sans Arabic", "DejaVu Sans",
+    sans-serif !important; /* Consistent font family */
+}
+
+html[lang="fa"] h1 {
+  font-weight: 700;
+}
+
+html[lang="fa"] h2 {
+  font-weight: 500;
+}
+
+html[lang="fa"] h3 {
+  font-weight: 400;
+}

@@ -11,9 +11,12 @@
 # https://www.mediawiki.org/wiki/Manual:Configuration_settings
 
 # Protect against web entry
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
+
+
+
 
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
@@ -77,8 +80,8 @@ $wgEnableUserEmail = true; # UPO
 $wgEmergencyContact = 'noreply@localhost.com';
 $wgPasswordSender = 'noreply@localhost.com';
 
-$wgEnotifUserTalk = true; # UPO
-$wgEnotifWatchlist = true; # UPO
+$wgEnotifUserTalk = false; # UPO
+$wgEnotifWatchlist = false; # UPO
 $wgEmailAuthentication = true;
 
 ## Database settings
@@ -113,7 +116,7 @@ $wgFileExtensions[] = 'mp3'; // Add 'mp3' to the list of allowed file extensions
 // Allow all image formats  
 $wgFileExtensions = array_merge($wgFileExtensions, ['png', 'gif', 'jpg', 'jpeg', 'svg', 'bmp']); // Merge additional image formats into the allowed file extensions  
 // Set the upload directory to /var/www/html/mediafiles  
-$wgUploadDirectory = "$wgResourceBasePath/mediafiles"; // Specify the directory where uploaded files will be stored  
+$wgUploadDirectory = "$IP/mediafiles"; // Specify the directory where uploaded files will be stored  
 $wgUploadPath = "/mediafiles"; // Define the web-accessible path for uploaded files  
 // Set the maximum upload file size to 2MB  
 $wgMaxUploadSize = 2 * 1024 * 1024; // Limit the maximum file size for uploads to 2 megabytes (MB)
@@ -124,7 +127,7 @@ $wgUseInstantCommons = false;
 # Periodically send a pingback to https://www.mediawiki.org/ with basic data
 # about this MediaWiki instance. The Wikimedia Foundation shares this data
 # with MediaWiki developers to help guide future development efforts.
-$wgPingback = true;
+$wgPingback = false;
 
 # Site language code, should be one of the list in ./includes/languages/data/Names.php
 $wgLanguageCode = 'fa';
@@ -142,22 +145,22 @@ $wgDefaultDateFormat = 'jalali';
 ## be publicly accessible from the web.
 #$wgCacheDirectory = "$IP/cache";
 
-$wgSecretKey = 'b5371a668de584a84557381b3377afb3ab1d7013b58ca4e942d0602de568271e';
+$wgSecretKey = 'da404e40b7fcd60ff81deaa3fda790c17e1a7e84c9ed97695228023099fd4847';
 
 # Changing this will log out all existing sessions.
 $wgAuthenticationTokenVersion = '1';
 
 # Site upgrade key. Must be set to a string (default provided) to turn on the
 # web installer while LocalSettings.php is in place
-$wgUpgradeKey = 'd34732c38fbfefa1';
+$wgUpgradeKey = '618bd4e196d9979e';
 
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
 ## License and Creative Commons licenses are supported so far.
 $wgRightsPage = ""; # Set to the title of a wiki page that describes your license/copyright
-$wgRightsUrl = 'https://creativecommons.org/publicdomain/zero/1.0/deed.fa';
-$wgRightsText = 'CC0 (Creative Commons Zero) [مالکیت عمومی]';
-$wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-0.png";
+$wgRightsUrl = 'https://creativecommons.org/licenses/by-sa/4.0/';
+$wgRightsText = 'اشتراک گذاری یکجور استناد رایج سازنده';
+$wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png";
 
 # Path to the GNU diff3 utility. Used for conflict resolution.
 $wgDiff3 = '/usr/bin/diff3';
@@ -173,42 +176,49 @@ $wgDefaultMobileSkin = 'minerva';
 
 # Enabled skins.
 # The following skins were automatically enabled:
-wfLoadSkin('MinervaNeue');
-wfLoadSkin('MonoBook');
-wfLoadSkin('Timeless');
-wfLoadSkin('Vector');
+wfLoadSkin( 'MinervaNeue' );
+wfLoadSkin( 'MonoBook' );
+wfLoadSkin( 'Timeless' );
+wfLoadSkin( 'Vector' );
 
 
 # Enabled extensions. Most of the extensions are enabled by adding
 # wfLoadExtension( 'ExtensionName' );
 # to LocalSettings.php. Check specific extension documentation for more details.
 # The following extensions were automatically enabled:
-wfLoadExtension('CategoryTree');
-wfLoadExtension('Cite');
-wfLoadExtension('CiteThisPage');
-wfLoadExtension('CodeEditor');
-wfLoadExtension('Gadgets');
-wfLoadExtension('ImageMap');
-wfLoadExtension('Linter');
-wfLoadExtension('Math');
-wfLoadExtension('MultimediaViewer');
-wfLoadExtension('ParserFunctions');
-wfLoadExtension('PdfHandler');
-wfLoadExtension('Poem');
-wfLoadExtension('ReplaceText');
-wfLoadExtension('Scribunto');
-wfLoadExtension('SyntaxHighlight_GeSHi');
-wfLoadExtension('TemplateData');
-wfLoadExtension('TimedMediaHandler');
-wfLoadExtension('UniversalLanguageSelector');
-wfLoadExtension('Variables');
-wfLoadExtension('VisualEditor');
-wfLoadExtension('WikiEditor');
-wfLoadExtension('Echo');
-wfLoadExtension('InputBox');
-wfLoadExtension('Interwiki');
-wfLoadExtension('PageImages');
-wfLoadExtension('MobileFrontend');
+wfLoadExtension( 'CategoryTree' );
+wfLoadExtension( 'Cite' );
+wfLoadExtension( 'CiteThisPage' );
+wfLoadExtension( 'CodeEditor' );
+wfLoadExtension( 'CognitiveProcessDesigner' );
+wfLoadExtension( 'DiscussionTools' );
+wfLoadExtension( 'DrawioEditor' );
+wfLoadExtension( 'Echo' );
+wfLoadExtension( 'Gadgets' );
+wfLoadExtension( 'ImageMap' );
+wfLoadExtension( 'InputBox' );
+wfLoadExtension( 'Interwiki' );
+wfLoadExtension( 'Linter' );
+wfLoadExtension( 'Math' );
+wfLoadExtension( 'Mermaid' );
+wfLoadExtension( 'MobileFrontend' );
+wfLoadExtension( 'MultimediaViewer' );
+wfLoadExtension( 'NativeSvgHandler' );
+wfLoadExtension( 'Nuke' );
+wfLoadExtension( 'PageForms' );
+wfLoadExtension( 'PageImages' );
+wfLoadExtension( 'ParserFunctions' );
+wfLoadExtension( 'PdfHandler' );
+wfLoadExtension( 'Poem' );
+wfLoadExtension( 'ReplaceText' );
+wfLoadExtension( 'Scribunto' );
+wfLoadExtension( 'SemanticMediaWiki' );
+wfLoadExtension( 'SyntaxHighlight_GeSHi' );
+wfLoadExtension( 'TemplateData' );
+wfLoadExtension( 'TimedMediaHandler' );
+wfLoadExtension( 'Variables' );
+wfLoadExtension( 'VisualEditor' );
+wfLoadExtension( 'WikiEditor' );
 
 
 # End of automatically generated settings.
@@ -220,3 +230,9 @@ $wgGroupPermissions['sysop']['interwiki'] = true;
 $wgFFmpegLocation = '/usr/bin/ffmpeg'; // Most common ffmpeg path on Linux
 
 $wgULSEnable = false;
+
+// Set the URL for the draw.io service
+$wgDrawioEditorBaseUrl = "http://drawio:8080"; // Ensure this matches your Docker setup
+
+$wgGroupPermissions['user']['drawioeditor'] = true; // Allow registered users to use draw.io
+$wgGroupPermissions['sysop']['drawioeditor'] = true; // Allow sysops to use draw.io

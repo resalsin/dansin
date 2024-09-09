@@ -174,6 +174,65 @@ services:
     networks:
       - brdgnet
 
+  vazhsin_next:
+    build:
+      context: .
+      dockerfile: ./docker/mediawiki/Dockerfile
+      target: mediawiki_run_stage
+      args:
+        - MEDIA_WIKI_VERSION=1.42
+        - BRANCH_TAG=REL1_42
+        - INSTANCE_BUILD=vazhsin_next
+    container_name: dansin_vazhsin_next
+    ports:
+      - "8086:80"
+    environment:
+      - MEDIAWIKI_DB_TYPE=${VAZHSIN_NEXT_DB_TYPE}
+      - MEDIAWIKI_DB_HOST=${VAZHSIN_NEXT_DB_HOST}
+      - MEDIAWIKI_DB_PORT=${VAZHSIN_NEXT_DB_PORT}
+      - MEDIAWIKI_DB_NAME=${VAZHSIN_NEXT_DB_NAME}
+      - MEDIAWIKI_DB_USER=${VAZHSIN_NEXT_DB_USER}
+      - MEDIAWIKI_DB_PASSWORD=${VAZHSIN_NEXT_DB_PASSWORD}
+    volumes:
+      - ./backups/vazhsin_next:/backups
+      - ./public/vazhsin_next:/var/www/html/public
+      - ./settings/vazhsin_next/LocalSettings.php:/var/www/html/LocalSettings.php
+      - vazhsin_next_medias:/var/www/html/mediafiles
+    depends_on:
+      - db
+    networks:
+      - brdgnet
+
+  amookhsin:
+    build:
+      context: .
+      dockerfile: ./docker/mediawiki/Dockerfile
+      target: mediawiki_run_stage
+      args:
+        - MEDIA_WIKI_VERSION=1.42
+        - BRANCH_TAG=REL1_42
+        - INSTANCE_BUILD=amookhsin
+    container_name: dansin_amookhsin
+    ports:
+      - "8087:80"
+    environment:
+      - MEDIAWIKI_DB_TYPE=${AMOOKHSIN_DB_TYPE}
+      - MEDIAWIKI_DB_HOST=${AMOOKHSIN_DB_HOST}
+      - MEDIAWIKI_DB_PORT=${AMOOKHSIN_DB_PORT}
+      - MEDIAWIKI_DB_NAME=${AMOOKHSIN_DB_NAME}
+      - MEDIAWIKI_DB_USER=${AMOOKHSIN_DB_USER}
+      - MEDIAWIKI_DB_PASSWORD=${AMOOKHSIN_DB_PASSWORD}
+    volumes:
+      - ./backups/amookhsin:/backups
+      - ./public/amookhsin:/var/www/html/public
+      - ./settings/amookhsin/LocalSettings.php:/var/www/html/LocalSettings.php
+      - amookhsin_medias:/var/www/html/mediafiles
+    depends_on:
+      - db
+      - drawio
+    networks:
+      - brdgnet
+
   drawio:
     image: jgraph/drawio
     container_name: dansin_drawio
@@ -221,6 +280,8 @@ volumes:
   matsin_medias: {}
   # Define an external volume named vazhsin_medias
   vazhsin_medias: {}
+  # Define an external volume named vazhsin_next_medias
+  vazhsin_next_medias: {}
   # Define an external volume named tajrosin_medias
   tajrosin_medias: {}
   # Define an external volume named resasin_medias
@@ -229,6 +290,8 @@ volumes:
   amoosin_medias: {}
   # Define an external volume named bonchsin_medias
   bonchsin_medias: {}
+  # Define an external volume named amookhsin_medias
+  amookhsin_medias: {}
   # Define an external volume named dansin_data
   dansin_data: {}
   # Define an external volume named drawio_data

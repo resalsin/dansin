@@ -1,0 +1,33 @@
+.ha-translation-table {
+  background-color: #4b70f5;
+  color: #f3f7ec;
+  border-radius: 0.3em;
+  padding: 0.2em;
+}
+
+.ha-translation-table .ha-translations {
+  background-color: white;
+  color: black;
+  padding: 0.3rem;
+}
+
+.ha-translation-table .ha-translation-title .mw-collapsible-text {
+  color: #f3f7ec;
+}
+
+.ha-translation-table .ha-translations ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.ha-translation-table .ha-translation-title {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .ha-translation-table .ha-translations ul {
+    display: flex;
+    flex-direction: column;
+  }
+}
